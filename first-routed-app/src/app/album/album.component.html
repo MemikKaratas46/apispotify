@@ -1,0 +1,47 @@
+<h1>Search album</h1>
+
+<p>
+  <input type="text" #newquery>
+  <button (click)="submit(newquery)">Search</button>
+</p>
+
+<div *ngIf="results">
+  <div *ngIf="!results.albums || results.albums.items.length ==0">
+    No tracks were found with the term '{{ query }}'
+  </div>
+
+  <div *ngIf="results.albums &&  results.albums.items.length > 0">
+    <h1>Results</h1>
+    <div class="row">
+      <div class="col-sm-6 col-md-4" *ngFor="let a of results.albums.items">
+        <div class="thumbnail">
+
+          <div class="content">
+            <img src="{{ a.images[0].url}}" class="img-responsive" alt="{{a.name}}">
+            <div class="caption">
+              <h3>
+                <a >
+                  {{ a.name }}
+                </a>
+              </h3>
+              <br>
+              <p>
+                <a>
+                  Numero di canzoni: {{ a.total_tracks }}
+                </a>
+              </p>
+            </div>
+            <div class="attribution">
+              <h4>
+
+                <a >
+                  Anno di uscita: {{ a.release_date }}
+                </a>
+              </h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
